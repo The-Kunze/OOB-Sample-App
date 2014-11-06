@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+  
+  <category>
+      <pattern>I WANT TO TAKE A SELFIE</pattern>
+      <template>Go ahead!<oob><camera/></oob></template>
+  </category>
+  
+  <category>
+      <pattern>I WANT TO ADD AN EVENT TO MY CALENDAR FOR TODAY</pattern>
+      <template><think><set name="topic">calendar</set></think>Okay, where is the event?</template>
+  </category>
+  
+  <category>
+      <pattern>*</pattern>
+      <that>Okay, where is the event</that>
+      <topic>calendar</topic>
+      <template><think><set name="eventLocation"><star/></set></think> What is the title of this event?</template>
+  </category>
+  
+  <category>
+      <pattern>*</pattern>
+      <that>What is the title of this event</that>
+      <topic>calendar</topic>
+      <template><think><set name="eventTitle"><star/></set></think> When does it begin?</template>
+  </category>
+ 
+  
+  <category>
+      <pattern>* *</pattern>
+      <that>AND WHAT TIME DOES IT END</that>
+      <topic>calendar</topic>
+      <template><think><srai>set time predicates <date/></srai><set name="endHour"><star index="1"/></set><set name="endMinutes"><star index="2"/></set>
+      </think> Ok I'm going to create a calendar entry for you to confirm. <oob><calendar><day><get name="day"/></day><year><get name="year"/></year><month><get name="month"/></month><title><get name="eventTitle"/></title><location><get name="eventLocation"/></location><starthour><get name="startHour"/></starthour><startminute><get name="startMinutes"/></startminute><endhour><get name="endHour"/></endhour><endminutes><get name="endMinutes"/></endminutes></calendar></oob>
+      </template>
+  </category>
+  
+    <category>
+      <pattern>* *</pattern>
+      <that>WHEN DOES IT BEGIN</that>
+      <topic>calendar</topic>
+      <template><think><set name="startHour"><star index="1"/></set><set name="startMinutes"><star index="2"/></set>
+      </think> And what time does it end?</template>
+  </category>
+  
+  <category>
+      <pattern>EXPLODEDDATE * * *</pattern>
+      <template><star index="1"/><star index="2"/></template>
+  </category>
+  
+  <category>
+      <pattern>SET TIME PREDICATES * * * *</pattern>
+      <template><think><set name="day"><srai>EXPLODEDDATE <explode><star index="3"/></explode></srai></set> 
+                <set name="month"><map name="months2nums"><star index="2"/></map></set>
+                <set name="year"><star index="4"/></set></think>
+                </template>
+  </category>
+  
+ </aiml>
