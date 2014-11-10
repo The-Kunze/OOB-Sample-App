@@ -7,6 +7,11 @@
   </category>
   
   <category>
+      <pattern>CREATE CALENDAR ENTRY</pattern>
+      <template> Ok I'm going to create a calendar entry for you to confirm. <oob><calendar><day><get name="day"/></day><year><get name="year"/></year><month><get name="month"/></month><title><get name="eventTitle"/></title><location><get name="eventLocation"/></location><starthour><get name="startHour"/></starthour><startminute><get name="startMinutes"/></startminute><endhour><get name="endHour"/></endhour><endminutes><get name="endMinutes"/></endminutes></calendar></oob> </template>
+  </category>
+
+  <category>
       <pattern>I WANT TO ADD AN EVENT TO MY CALENDAR FOR TODAY</pattern>
       <template><think><set name="topic">calendar</set></think>Okay, where is the event?</template>
   </category>
@@ -31,7 +36,7 @@
       <that>AND WHAT TIME DOES IT END</that>
       <topic>calendar</topic>
       <template><think><srai>set time predicates <date/></srai><set name="endHour"><star index="1"/></set><set name="endMinutes"><star index="2"/></set>
-      </think> Ok I'm going to create a calendar entry for you to confirm. <oob><calendar><day><get name="day"/></day><year><get name="year"/></year><month><get name="month"/></month><title><get name="eventTitle"/></title><location><get name="eventLocation"/></location><starthour><get name="startHour"/></starthour><startminute><get name="startMinutes"/></startminute><endhour><get name="endHour"/></endhour><endminutes><get name="endMinutes"/></endminutes></calendar></oob>
+      </think><srai>create calendar entry</srai>
       </template>
   </category>
   

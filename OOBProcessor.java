@@ -41,9 +41,6 @@ public class OOBProcessor {
 			if (oobContent.contains("<camera>")) {
 				oobCamera();
 			}
-			if (oobContent.contains("<message>")) {
-				oobSms(oobContent);
-			}
 			if (oobContent.contains("<calendar>")) {
 				oobCalendar(oobContent);
 			}
